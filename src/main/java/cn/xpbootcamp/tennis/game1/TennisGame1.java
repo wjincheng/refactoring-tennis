@@ -53,6 +53,22 @@ public class TennisGame1 implements TennisGame {
         return score;
     }
 
+    private boolean isEnd() {
+        return (mScore1 >= 4 || mScore2 >= 4) && Math.abs(mScore1 - mScore2) >= 2;
+    }
+
+    private boolean isNotEndAndScoreBiggerThanFour() {
+        return (mScore1 >= 4 || mScore2 >= 4) && Math.abs(mScore1 - mScore2) == 1;
+    }
+
+    private boolean isDeuce() {
+        return (mScore1 == mScore2) && mScore1 > 2;
+    }
+
+    private boolean isEqualNotDeuce() {
+        return (mScore1 == mScore2) && mScore1 < 3;
+    }
+
     private String getScore(int tempScore){
         switch (tempScore) {
             case 0:
