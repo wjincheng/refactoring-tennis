@@ -29,34 +29,24 @@ public class TennisGame1 implements TennisGame {
 
     @Override
     public String getScore(){
-        String score = "";
         if (isDeuce()) {
             return "Deuce";
         } else if (isEqualNotDeuce()) {
             return getScore(mScore1) + "-All";
-
-        } else if (mScore1 >= 4 || mScore2 >= 4) {
-            int minusResult = mScore1 - mScore2;
-            if (minusResult == 1) {
-                score = "Advantage player1";
-            } else if (minusResult == -1) {
-                score = "Advantage player2";
-            } else if (minusResult >= 2) {
-                score = "Win for player1";
-            } else {
-                score = "Win for player2";
-            }
+        } else if (isNotEndButScoreBiggerThanFour()) {
+            return "Advantage " + getHighScoreName();
+        } else if (isEnd()) {
+            return "Win for " + getHighScoreName();
         } else {
-            score = getScore(mScore1) + "-" + getScore(mScore2);
+            return getScore(mScore1) + "-" + getScore(mScore2);
         }
-        return score;
     }
 
     private boolean isEnd(){
         return (mScore1 >= 4 || mScore2 >= 4) && Math.abs(mScore1 - mScore2) >= 2;
     }
 
-    private boolean isNotEndAndScoreBiggerThanFour(){
+    private boolean isNotEndButScoreBiggerThanFour(){
         return (mScore1 >= 4 || mScore2 >= 4) && Math.abs(mScore1 - mScore2) == 1;
     }
 
@@ -81,5 +71,9 @@ public class TennisGame1 implements TennisGame {
             default:
                 return "";
         }
+    }
+
+    private String getHighScoreName(){
+        return mScore1 > mScore2 ? player1Name : player2Name;
     }
 }
