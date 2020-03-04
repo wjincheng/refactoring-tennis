@@ -13,13 +13,13 @@ public class TennisGame1 implements TennisGame {
     private static String THIRTY = "Thirty";
     private static String FORTY = "Forty";
 
-    public TennisGame1(String player1Name, String player2Name) {
+    public TennisGame1(String player1Name, String player2Name){
         this.player1Name = player1Name;
         this.player2Name = player2Name;
     }
 
     @Override
-    public void wonPoint(String playerName) {
+    public void wonPoint(String playerName){
         if (playerName.equals(player1Name)) {
             mScore1++;
         } else {
@@ -28,14 +28,13 @@ public class TennisGame1 implements TennisGame {
     }
 
     @Override
-    public String getScore() {
+    public String getScore(){
         String score = "";
-        if (mScore1 == mScore2) {
-            score = getScore(mScore1);
-            if (score.isEmpty() || FORTY.equals(score)) {
-                return "Deuce";
-            }
+        if (isDeuce()) {
+            return "Deuce";
+        } else if (isEqualNotDeuce()) {
             return getScore(mScore1) + "-All";
+
         } else if (mScore1 >= 4 || mScore2 >= 4) {
             int minusResult = mScore1 - mScore2;
             if (minusResult == 1) {
@@ -53,19 +52,19 @@ public class TennisGame1 implements TennisGame {
         return score;
     }
 
-    private boolean isEnd() {
+    private boolean isEnd(){
         return (mScore1 >= 4 || mScore2 >= 4) && Math.abs(mScore1 - mScore2) >= 2;
     }
 
-    private boolean isNotEndAndScoreBiggerThanFour() {
+    private boolean isNotEndAndScoreBiggerThanFour(){
         return (mScore1 >= 4 || mScore2 >= 4) && Math.abs(mScore1 - mScore2) == 1;
     }
 
-    private boolean isDeuce() {
+    private boolean isDeuce(){
         return (mScore1 == mScore2) && mScore1 > 2;
     }
 
-    private boolean isEqualNotDeuce() {
+    private boolean isEqualNotDeuce(){
         return (mScore1 == mScore2) && mScore1 < 3;
     }
 
@@ -74,11 +73,11 @@ public class TennisGame1 implements TennisGame {
             case 0:
                 return LOVE;
             case 1:
-                return  FIFTEEN;
+                return FIFTEEN;
             case 2:
-                return  THIRTY;
+                return THIRTY;
             case 3:
-                return  FORTY;
+                return FORTY;
             default:
                 return "";
         }
