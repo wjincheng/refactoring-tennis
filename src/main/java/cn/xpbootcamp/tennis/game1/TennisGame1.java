@@ -8,10 +8,6 @@ public class TennisGame1 implements TennisGame {
     private int mScore2 = 0;
     private String player1Name;
     private String player2Name;
-    private static String LOVE = "Love";
-    private static String FIFTEEN = "Fifteen";
-    private static String THIRTY = "Thirty";
-    private static String FORTY = "Forty";
 
     public TennisGame1(String player1Name, String player2Name){
         this.player1Name = player1Name;
@@ -61,13 +57,13 @@ public class TennisGame1 implements TennisGame {
     private String getScore(int tempScore){
         switch (tempScore) {
             case 0:
-                return LOVE;
+                return "Love";
             case 1:
-                return FIFTEEN;
+                return "Fifteen";
             case 2:
-                return THIRTY;
+                return "Thirty";
             case 3:
-                return FORTY;
+                return "Forty";
             default:
                 return "";
         }
